@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 
 import abi from "./utils/SolidityTodoApp.json";
@@ -7,6 +6,7 @@ import { useState } from "react";
 
 import { ethers } from "ethers";
 import styled from "styled-components";
+import React from "react";
 
 function App() {
   const contractAddress = "0x1bdA382C0abae3CbaA7c1eE24DC9992e8B9E75E2";
@@ -83,7 +83,7 @@ function App() {
         // await todoContract.addTodo("First todo")
         const waves = await todoContract.getTodos();
 console.log(waves)
-        const wavesCleaned = waves.map((wave) => {
+        const wavesCleaned = waves.map((wave:any) => {
           return {
             address: wave.waver,
             timestamp: new Date(wave.timestamp * 1000),
