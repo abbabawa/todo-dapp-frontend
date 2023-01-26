@@ -4,16 +4,16 @@ import ThemeLayout from "./containers/ThemeLayout/ThemeLayout";
 import { Provider } from "react-redux";
 
 import { store } from "./redux/store/store";
+import Layout from "./containers/Layout";
+
+import MenuIcon  from "./components/svgs/MenuIcon"
 
 function App() {
   return (
     <Provider store={store}>
-    <ThemeLayout>
-      <Container>show</Container>
-      <UserAvatarLayout>
-        <MyText>this is me</MyText>
-      </UserAvatarLayout>
-    </ThemeLayout>
+      <ThemeLayout>
+        <Layout></Layout>
+      </ThemeLayout>
     </Provider>
   );
 }
@@ -33,9 +33,8 @@ const UserAvatarLayout = styled.div(({ theme }) => ({
 }));
 
 const MyText = styled.p(({ theme }) => ({
-  color: "red"
+  color: "#101E52",
 }));
-
 
 const Container = styled.div`
   width: 100%;
