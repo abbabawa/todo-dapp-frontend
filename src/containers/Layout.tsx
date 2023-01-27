@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import AddTask from "../components/AddTask";
 import Categories from "../components/CategorySection/Categories";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar/Sidebar";
@@ -23,6 +24,7 @@ function Layout({children}:any) {
         </Section>
         <Section>
           <TodayTasks />
+          <AddTask />
         </Section>
       </MainContent>
     </AppContainer>
@@ -58,6 +60,7 @@ const MainContent = styled.div(({ theme }) => ({
 
 const Section = styled.div(({ theme }) => ({
   maxWidth: "100%",
+  display: "flex",
   // marginLeft: theme.customSpacing.rem(0.5),
   paddingLeft: theme.customSpacing.rem(1.5),
   // border: "1px solid red",

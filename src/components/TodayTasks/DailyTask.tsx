@@ -9,17 +9,17 @@ const DailyTask = ({ title, color, status }: any) => {
   taskStatus = status;
   taskColor = color;
   return (
-    <CategoryCardLayout>
+    <DailyTaskLayout>
       {status ? <BsCheckCircleFill color="#CFD1F0" /> : <StatusIndicator />}
       <Task>{title}</Task>
-    </CategoryCardLayout>
+    </DailyTaskLayout>
   );
 };
 
 export default DailyTask;
 
-const CategoryCardLayout = styled.div(({ theme }) => ({
-  width: "100%",
+const DailyTaskLayout = styled.div(({ theme }) => ({
+  flexGrow: 1,
   marginTop: theme.customSpacing.rem(1),
   display: "flex",
   alignItems: "center",
