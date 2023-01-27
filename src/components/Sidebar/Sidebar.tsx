@@ -82,8 +82,8 @@ const Gradient = styled.div(({ theme }) => ({
 
 const ProfileWrapper = styled.div(({ theme }) => ({
   position: "absolute",
-  top: "12.2%",
-  left: "6.8%",
+  top: "12.0%",
+  left: "6.7%",
   width: "85px",
   height: "85px",
   marginLeft: "auto",

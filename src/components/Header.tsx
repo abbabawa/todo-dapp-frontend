@@ -9,13 +9,13 @@ import { HiMenuAlt4 } from "react-icons/hi";
 const Header = () => {
   return (
     <HeaderLayout>
-      <HiMenuAlt4 size={22} />
+      <HiMenuAlt4 size={32} color={"#9799A5"} />
       <HeaderRight>
         <IconWrapper>
-          <FiSearch size={22} />
+          <FiSearch size={32} color={"#9799A5"} />
         </IconWrapper>
         <IconWrapper>
-          <BsBellFill size={22} />
+          <BsBellFill size={32} color={"#9799A5"} />
         </IconWrapper>
       </HeaderRight>
     </HeaderLayout>

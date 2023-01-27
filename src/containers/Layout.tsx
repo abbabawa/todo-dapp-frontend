@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Categories from "../components/CategorySection/Categories";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar/Sidebar";
 import MenuIcon from "../components/svgs/MenuIcon";
@@ -13,6 +14,12 @@ function Layout({children}:any) {
       </SideBarWrapper>
       <MainContent>
         <Header />
+        <Section>
+          <PageTitle>What's up, Joy</PageTitle>
+        </Section>
+        <Section>
+          <Categories />
+        </Section>
       </MainContent>
     </AppContainer>
   );
@@ -33,7 +40,7 @@ const SideBarWrapper = styled.div(({ theme }) => ({
   width: "20%",
   minHeight: "100%",
   // display: "flex",
-  border: "1px solid green",
+  // border: "1px solid green",
   backgroundColor: "#101E52"
 }));
 
@@ -41,5 +48,17 @@ const MainContent = styled.div(({ theme }) => ({
   width: "80%",
   minHeight: "100%",
   border: "1px solid yellow",
+  backgroundColor: "#F9FAFF",
+  overflowX: "hidden"
+}));
 
+const Section = styled.div(({ theme }) => ({
+  maxWidth: "100%",
+  // marginLeft: theme.customSpacing.rem(0.5),
+  paddingLeft: theme.customSpacing.rem(1.5),
+  // border: "1px solid red",
+}));
+
+const PageTitle = styled.h1(({ theme }) => ({
+  color: "#51526D"
 }));
