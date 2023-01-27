@@ -4,6 +4,7 @@ import Categories from "../components/CategorySection/Categories";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar/Sidebar";
 import MenuIcon from "../components/svgs/MenuIcon";
+import TodayTasks from "../components/TodayTasks";
 // import MenuIcon  from "../../components/svgs/MenuIcon"
 
 function Layout({children}:any) {
@@ -19,6 +20,9 @@ function Layout({children}:any) {
         </Section>
         <Section>
           <Categories />
+        </Section>
+        <Section>
+          <TodayTasks />
         </Section>
       </MainContent>
     </AppContainer>

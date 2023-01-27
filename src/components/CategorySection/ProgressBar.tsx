@@ -2,8 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 
 let val = '30%';
-const ProgressBar = ({width}:any) => {
+let indicatorColor = "#FF5DFF"
+const ProgressBar = ({width, color}:any) => {
     val = width
+    indicatorColor = color
   return (
     <ProgressBarWrapper>
         <ProgressIndicator />
@@ -21,5 +23,5 @@ const ProgressBarWrapper = styled.div(({ theme }) => ({
 
 const ProgressIndicator = styled.div(({ theme }) => ({
     width: val ? val : '50%',
-    border: '1px solid #FF5DFF',
+    border: `1px solid ${indicatorColor}`
 }))

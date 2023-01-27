@@ -2,12 +2,12 @@ import React from 'react'
 import styled from 'styled-components';
 import ProgressBar from './ProgressBar';
 
-const CategoryCard = ({totalTasks, completed, title }:any) => {
+const CategoryCard = ({totalTasks, completed, title, color }:any) => {
   return (
     <CategoryCardLayout>
         <NumOfTasks>{totalTasks} Tasks</NumOfTasks>
         <Title>{title}</Title>
-        <ProgressBar width={((completed/totalTasks)*100)+"%"} />
+        <ProgressBar width={((completed/totalTasks)*100)+"%"} color={color} />
     </CategoryCardLayout>
   )
 }
