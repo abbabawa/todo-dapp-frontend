@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import AddCategory from "../components/AddCategory";
 import AddTask from "../components/AddTask";
 import Categories from "../components/CategorySection/Categories";
 import Header from "../components/Header";
@@ -8,7 +9,7 @@ import MenuIcon from "../components/svgs/MenuIcon";
 import TodayTasks from "../components/TodayTasks";
 // import MenuIcon  from "../../components/svgs/MenuIcon"
 
-function Layout({children}:any) {
+function Layout({ children }: any) {
   return (
     <AppContainer>
       <SideBarWrapper>
@@ -24,7 +25,10 @@ function Layout({children}:any) {
         </Section>
         <Section>
           <TodayTasks />
-          <AddTask />
+          <AddTaskAndCategory>
+            <AddTask />
+            <AddCategory />
+          </AddTaskAndCategory>
         </Section>
       </MainContent>
     </AppContainer>
@@ -41,13 +45,12 @@ const AppContainer = styled.div(({ theme }) => ({
   //   border: "1px solid red",
 }));
 
-
 const SideBarWrapper = styled.div(({ theme }) => ({
   width: "20%",
   minHeight: "100%",
   // display: "flex",
   // border: "1px solid green",
-  backgroundColor: "#101E52"
+  backgroundColor: "#101E52",
 }));
 
 const MainContent = styled.div(({ theme }) => ({
@@ -55,7 +58,7 @@ const MainContent = styled.div(({ theme }) => ({
   minHeight: "100%",
   border: "1px solid yellow",
   backgroundColor: "#F9FAFF",
-  overflowX: "hidden"
+  overflowX: "hidden",
 }));
 
 const Section = styled.div(({ theme }) => ({
@@ -67,5 +70,10 @@ const Section = styled.div(({ theme }) => ({
 }));
 
 const PageTitle = styled.h1(({ theme }) => ({
-  color: "#51526D"
+  color: "#51526D",
+}));
+
+const AddTaskAndCategory = styled.div(({ theme }) => ({
+  flexGrow: 1,
+  marginTop: theme.customSpacing.rem(3),
 }));

@@ -12,17 +12,17 @@ const menuItems = [
     icon: <BsFillBookmarkFill color="#314074" />
   },
   {
-    id: 1,
+    id: 2,
     title: "Categories",
     icon: <BsGrid color="#314074" />
   },
   {
-    id: 1,
+    id: 3,
     title: "Analytics",
     icon: <HiOutlineChartPie size={32} color="#314074" />
   },
   {
-    id: 1,
+    id: 4,
     title: "Settings",
     icon: <BsGear size={32} color="#314074" />
   },

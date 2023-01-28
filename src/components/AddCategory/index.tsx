@@ -2,24 +2,21 @@ import React from "react";
 import styled from "styled-components";
 import SectionTitle from "../Common/SectionTitle";
 
-const AddTask = () => {
+const AddCategory = () => {
   return (
-    <AddTaskLayout>
-      <SectionTitle>Add Task</SectionTitle>
+    <AddCategoryLayout>
+      <SectionTitle>Add Category</SectionTitle>
       <FormLayout>
-        <TaskInput placeholder="Enter new task" />
-        <TaskCategoryInput>
-          <SelectOption>Category</SelectOption>
-        </TaskCategoryInput>
+        <TaskInput placeholder="Enter category" />
         <Button>Save</Button>
       </FormLayout>
-    </AddTaskLayout>
+    </AddCategoryLayout>
   );
 };
 
-export default AddTask;
+export default AddCategory;
 
-const AddTaskLayout = styled.div(({ theme }) => ({
+const AddCategoryLayout = styled.div(({ theme }) => ({
   flexGrowl: 1,
   marginTop: theme.customSpacing.rem(3),
   paddingLeft: theme.customSpacing.rem(3),
@@ -77,7 +74,4 @@ const Button = styled.button(({ theme }) => ({
   border: "0px solid white",
   borderRadius: theme.customSpacing.rem(1),
   color: "#6A7699",
-  fontSize: theme.customSpacing.rem(1.4),
-  fontWeight: 600,
-//   backgroundColor: "#101E52"
 }));

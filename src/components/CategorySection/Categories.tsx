@@ -39,7 +39,7 @@ const Categories = () => {
     <CategoryLayout>
       <SectionTitle>Categories</SectionTitle>
       <CategoryCardsLayout>
-        {categoryList.map(cat=><CategoryCard title={cat.title} totalTasks={cat.totalTasks} completed={cat.completed} color={cat.color} />)}
+        {categoryList.map(cat=><CategoryCard key={cat.id} title={cat.title} totalTasks={cat.totalTasks} completed={cat.completed} color={cat.color} />)}
         
       </CategoryCardsLayout>
     </CategoryLayout>
