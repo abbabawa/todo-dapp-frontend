@@ -42,7 +42,7 @@ const tasks = [
   },
 ];
 
-const TodayTasks = ({ color, title, status }: any) => {
+const TodayTasks = ({ todos }: any) => {//console.log(todos[0].id);
   return (
     <TodayTaskLayout>
       <SectionTitle>Today's Tasks</SectionTitle>

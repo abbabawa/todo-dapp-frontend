@@ -1,8 +1,36 @@
 import React from "react";
 import styled from "styled-components";
 import SectionTitle from "../Common/SectionTitle";
+import abi from "../../utils/SolidityTodoApp.json";
+import { ethers } from "ethers";
 
 const AddTask = () => {
+
+  const contractAddress = process.env.REACT_APP_CONTRACT_ADDRESS || "";
+  const contractABI = abi.abi;
+  const { ethereum } = window;
+
+  const addTask = async () => {console.log("called")
+    try {
+      if (ethereum) {
+        const provider = new ethers.providers.Web3Provider(ethereum);
+        const signer = provider.getSigner();
+        const todoContract = new ethers.Contract(
+          contractAddress,
+          contractABI,
+          signer
+        );
+        // await todoContract.addTodo("First todo")
+        const tasks = await todoContract.getTodos();
+
+        return tasks
+      } else {
+        console.log("Ethereum object doesn't exist!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <AddTaskLayout>
       <SectionTitle>Add Task</SectionTitle>

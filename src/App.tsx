@@ -10,7 +10,7 @@ import abi from "./utils/SolidityTodoApp.json";
 import { ethers } from "ethers";
 
 function App() {
-  const contractAddress = "0x1bdA382C0abae3CbaA7c1eE24DC9992e8B9E75E2";
+  const contractAddress = process.env.REACT_APP_CONTRACT_ADDRESS || "";
   const contractABI = abi.abi;
   const [currentAccount, setCurrentAccount] = useState("");
 
@@ -35,7 +35,7 @@ function App() {
         const account = accounts[0];
         console.log("Found an authorized account:", account);
         setCurrentAccount(account);
-        getTodos();
+        // getTodos();
       } else {
         console.log("No authorized account found");
       }
@@ -70,41 +70,10 @@ function App() {
     // getWaves()
   }, []);
 
-  const getTodos = async () => {console.log("called")
-    const { ethereum } = window;
-
-    try {
-      if (ethereum) {
-        const provider = new ethers.providers.Web3Provider(ethereum);
-        const signer = provider.getSigner();
-        const todoContract = new ethers.Contract(
-          contractAddress,
-          contractABI,
-          signer
-        );
-        // await todoContract.addTodo("First todo")
-        const waves = await todoContract.getTodos();
-console.log(waves)
-        const wavesCleaned = waves.map((wave:any) => {
-          return {
-            address: wave.waver,
-            timestamp: new Date(wave.timestamp * 1000),
-            message: wave.message,
-          };
-        });
-
-        // setAllWaves(wavesCleaned);
-      } else {
-        console.log("Ethereum object doesn't exist!");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
   return (
     <Provider store={store}>
       <ThemeLayout>
-        <Layout></Layout>
+        <Layout account={currentAccount}></Layout>
       </ThemeLayout>
     </Provider>
   );

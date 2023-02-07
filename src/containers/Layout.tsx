@@ -1,4 +1,5 @@
-import React from "react";
+import { ethers } from "ethers";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import AddCategory from "../components/AddCategory";
 import AddTask from "../components/AddTask";
@@ -9,7 +10,45 @@ import MenuIcon from "../components/svgs/MenuIcon";
 import TodayTasks from "../components/TodayTasks";
 // import MenuIcon  from "../../components/svgs/MenuIcon"
 
-function Layout({ children }: any) {
+import abi from "../utils/SolidityTodoApp.json";
+
+function Layout({ children, account }: any) {
+
+  const contractAddress = process.env.REACT_APP_CONTRACT_ADDRESS || "";
+  const contractABI = abi.abi;
+  const { ethereum } = window;
+
+  const [todos, setTodos] = useState([])
+  
+  const getTodos = async () => {console.log("called")
+    
+
+    try {
+      if (ethereum) {
+        const provider = new ethers.providers.Web3Provider(ethereum);
+        const signer = provider.getSigner();
+        const todoContract = new ethers.Contract(
+          contractAddress,
+          contractABI,
+          signer
+        );
+        // await todoContract.addTodo("First todo")
+        const tasks = await todoContract.getTodos();
+
+        return tasks
+      } else {
+        console.log("Ethereum object doesn't exist!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(()=>{
+    if(account){
+      getTodos().then((todos)=>{setTodos(todos)})
+    }
+  }, [])
   return (
     <AppContainer>
       <SideBarWrapper>
@@ -24,7 +63,7 @@ function Layout({ children }: any) {
           <Categories />
         </Section>
         <Section>
-          <TodayTasks />
+          <TodayTasks todos={todos} />
           <AddTaskAndCategory>
             <AddTask />
             <AddCategory />

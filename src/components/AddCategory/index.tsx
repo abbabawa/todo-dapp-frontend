@@ -1,14 +1,50 @@
-import React from "react";
+import { ethers } from "ethers";
+import React, { useState } from "react";
 import styled from "styled-components";
 import SectionTitle from "../Common/SectionTitle";
 
+import abi from "../../utils/SolidityTodoApp.json";
+
 const AddCategory = () => {
+  const [categoryValue, setCategoryValue] = useState("");
+  const contractAddress = process.env.REACT_APP_CONTRACT_ADDRESS || "";
+  const contractABI = abi.abi;
+  const { ethereum } = window;
+  
+  const addCategory = async () => {
+    console.log("called");
+    if (categoryValue === "") return;
+    try {
+      if (ethereum) {
+        const provider = new ethers.providers.Web3Provider(ethereum);
+        const signer = provider.getSigner();console.log(signer, contractAddress, "signer")
+        const todoContract = new ethers.Contract(
+          contractAddress,
+          contractABI,
+          signer
+        );
+
+        const category = await todoContract.addCategory(categoryValue);
+        await category.wait();
+          console.log(category);
+        return category;
+      } else {
+        console.log("Ethereum object doesn't exist!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <AddCategoryLayout>
       <SectionTitle>Add Category</SectionTitle>
       <FormLayout>
-        <TaskInput placeholder="Enter category" />
-        <Button>Save</Button>
+        <TaskInput
+          value={categoryValue}
+          onChange={(e) => setCategoryValue(e.target.value)}
+          placeholder="Enter category"
+        />
+        <Button onClick={addCategory}>Save</Button>
       </FormLayout>
     </AddCategoryLayout>
   );
@@ -69,8 +105,8 @@ const Button = styled.button(({ theme }) => ({
   height: theme.customSpacing.rem(4.5),
   padding: theme.customSpacing.rem(1),
   marginTop: theme.customSpacing.rem(1),
-  marginLeft: 'auto',
-  marginRight: 'auto',
+  marginLeft: "auto",
+  marginRight: "auto",
   border: "0px solid white",
   borderRadius: theme.customSpacing.rem(1),
   color: "#6A7699",

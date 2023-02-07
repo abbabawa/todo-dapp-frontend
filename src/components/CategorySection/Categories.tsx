@@ -1,7 +1,14 @@
-import React from "react";
+import { ethers } from "ethers";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import SectionTitle from "../Common/SectionTitle";
 import CategoryCard from "./CategoryCard";
+import abi from "../../utils/SolidityTodoApp.json";
+
+interface CategoryObj{
+  id: number;
+  name: string;
+}
 
 const categoryList = [
   {
@@ -35,6 +42,36 @@ const categoryList = [
 ]
 
 const Categories = () => {
+  const [categoryValues, setCategoryValue] = useState([]);
+  const contractAddress = process.env.REACT_APP_CONTRACT_ADDRESS || "";
+  const contractABI = abi.abi;
+  const { ethereum } = window;
+  const getCategories = async () => {
+    try {
+      if (ethereum) {
+        const provider = new ethers.providers.Web3Provider(ethereum);
+        const signer = provider.getSigner();
+        const todoContract = new ethers.Contract(
+          contractAddress,
+          contractABI,
+          signer
+        );
+
+        const categories = await todoContract.getCategories();
+        // await categories.wait();
+          console.log(categories);
+        return categories;
+      } else {
+        console.log("Ethereum object doesn't exist!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getCategories().then((categories) => {setCategoryValue(categories);});
+  }, [])
   return (
     <CategoryLayout>
       <SectionTitle>Categories</SectionTitle>
